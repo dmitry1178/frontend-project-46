@@ -40,28 +40,28 @@ const genDiff = (filepath1, filepath2) => {
 };
 
 
-const indent = (depth, str = ' ') => str.repeat(depth * 4 - 2);
+const indent = (count) => ' '.repeat(count);
 
 const stringify = (value, depth = 1) => {
     if (!_.isObject(value)) {
     return String(value);
     }
     const keys = Object.keys(value);
-    const result = keys.map((key) => `${indent(depth + 1)}  ${key}: ${stringify(value[key], depth + 1)}`);
-    return `{\n${result.join('\n')}\n  ${indent(depth)}}`;
+    const result = keys.map((key) => `${indent(5)}  ${key}: ${stringify(value[key], depth + 1)}`);
+    return `{\n${result.join('\n')}\n  ${indent(4)}}`;
 };
 
 
 const iter = (tree, depth = 1) => tree.map((node) => {
-    if (node.type === 'nested') return `    ${node.key}: {\n${iter(node.children, depth + 1)}\n${indent(depth)}  }`;
-    if (node.type === 'removed') return `  - ${node.key}: ${stringify(node.value, depth)}`;
-    if (node.type === 'added') return `  + ${node.key}: ${stringify(node.value, depth)}`;
+    if (node.type === 'nested') return `${indent(4)}${node.key}: {\n${iter(node.children, depth + 1)}\n${indent(depth)}  }`;
+    if (node.type === 'removed') return `${indent(2)}- ${node.key}: ${stringify(node.value, depth)}`;
+    if (node.type === 'added') return `${indent(2)}+ ${node.key}: ${stringify(node.value, depth)}`;
     if (node.type === 'changed') {
-        const output1 = `  - ${node.key}: ${stringify(node.value1, depth)}`;
-        const output2 = `  + ${node.key}: ${stringify(node.value2, depth)}`;
+        const output1 = `${indent(2)}- ${node.key}: ${stringify(node.value1, depth)}`;
+        const output2 = `${indent(2)}+ ${node.key}: ${stringify(node.value2, depth)}`;
         return `${output1}\n${output2}`;
     }
-    if (node.type === 'unchanged') return `    ${node.key}: ${stringify(node.value, depth)}`;
+    if (node.type === 'unchanged') return `${indent(4)}${node.key}: ${stringify(node.value, depth)}`;
     return new Error(`Unknown type: ${node.type}`);
 }).join('\n');
 
