@@ -3,3 +3,6 @@
 [![Linter/Tests](https://github.com/dmitry1178/frontend-project-46/actions/workflows/main.yml/badge.svg)](https://github.com/dmitry1178/frontend-project-46/actions/workflows/main.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/4107b0d042f321bbe78d/maintainability)](https://codeclimate.com/github/dmitry1178/frontend-project-46/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/4107b0d042f321bbe78d/test_coverage)](https://codeclimate.com/github/dmitry1178/frontend-project-46/test_coverage)
+
+### An example of the program for finding and displaying differences in JSON files:
+[![asciicast](https://asciinema.org/a/558823.svg)](https://asciinema.org/a/558823)

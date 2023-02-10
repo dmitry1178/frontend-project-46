@@ -15,8 +15,7 @@ const readFile = (filepath) => {
     return new Error(`Unknown file extension: ${ext}`);
 };
 
-
-const genDiff = (filepath1, filepath2) => {
+export const genDiff = (filepath1, filepath2) => {
     const data1 = readFile(filepath1);
     const data2 = readFile(filepath2);
 
@@ -63,10 +62,11 @@ const stringFormation = (tree, depth = 1) => tree.map((node) => {
     return new Error(`Unknown type: ${node.type}`);
 }).join('\n');
 
-const formatStylish = (data) => `{\n${stringFormation(data)}\n}`;
+export const formatStylish = (data) => `{\n${stringFormation(data)}\n}`;
 
 
 
-console.log(genDiff('../__fixtures__/file1.json', '../__fixtures__/file2.json'));
-console.log(stringify(genDiff('../__fixtures__/file1.json', '../__fixtures__/file2.json')));
-console.log(formatStylish(genDiff('../__fixtures__/file1.json', '../__fixtures__/file2.json')));
+// console.log(genDiff('../__fixtures__/file1.json', '../__fixtures__/file2.json'));
+// console.log(stringify(genDiff('../__fixtures__/file1.json', '../__fixtures__/file2.json')));
+// console.log(makeAbsolutePath('../__fixtures__/file2.json'));
+// console.log(formatStylish(genDiff('../__fixtures__/file1.json', '../__fixtures__/file2.json')));
