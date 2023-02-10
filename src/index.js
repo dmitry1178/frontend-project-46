@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import path from 'path';
-import yaml from 'js-yaml';
+import { parse } from './parsers.js';
 import _ from 'lodash';
 
 const makeAbsolutePath = (filepath) => path.resolve(process.cwd(), filepath);
@@ -10,9 +10,7 @@ const fileExtension = (filepath) => path.extname(filepath).slice(1);
 const readFile = (filepath) => {
     const data = readFileSync(makeAbsolutePath(filepath));
     const ext = fileExtension(filepath);
-    if (ext === 'yml' || ext === 'yaml') return yaml.load(data);
-    if (ext === 'json') return JSON.parse(data);
-    return new Error(`Unknown file extension: ${ext}`);
+    return parse(data, ext);
 };
 
 export const genDiff = (filepath1, filepath2) => {
