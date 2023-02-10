@@ -23,7 +23,6 @@ const genDiff = (filepath1, filepath2) => {
     const keys1 = Object.keys(data1);
     const keys2 = Object.keys(data2);
     const keys = _.sortBy(_.union(keys1, keys2));
-    console.log(keys);
 
     return keys.map((key) => {
         if (!Object.hasOwn(data1, key)) return { type: 'added', key, value: data2[key] };
@@ -45,14 +44,11 @@ const genDiff = (filepath1, filepath2) => {
 const indent = (count) => ' '.repeat(count);
 
 const stringify = (value, depth = 1) => {
-    if (!_.isObject(value)) {
-    return String(value);
-    }
+    if (!_.isObject(value)) return String(value);
     const keys = Object.keys(value);
-    const result = keys.map((key) => `${indent(5)}  ${key}: ${stringify(value[key], depth + 1)}`);
-    return `{\n${result.join('\n')}\n  ${indent(4)}}`;
+    const result = keys.map((key) => `${key}: ${stringify(value[key], depth + 1)}`);
+    return `{\n${result.join('\n')}\n}`;
 };
-
 
 const stringFormation = (tree, depth = 1) => tree.map((node) => {
     if (node.type === 'nested') return `${indent(4)}${node.key}: {\n${iter(node.children, depth + 1)}}`;
@@ -71,6 +67,6 @@ const formatStylish = (data) => `{\n${stringFormation(data)}\n}`;
 
 
 
-console.log(genDiff('./file1.json', './file2.json'));
-console.log(stringify(genDiff('./file1.json', './file2.json')));
-console.log(formatStylish(genDiff('./file1.json', './file2.json')));
+console.log(genDiff('../__fixtures__/file1.json', '../__fixtures__/file2.json'));
+console.log(stringify(genDiff('../__fixtures__/file1.json', '../__fixtures__/file2.json')));
+console.log(formatStylish(genDiff('../__fixtures__/file1.json', '../__fixtures__/file2.json')));
