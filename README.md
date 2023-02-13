@@ -10,12 +10,12 @@ Gendiff - a program that displays the differences between two data structures.
 ### Program Features
 - Supported input formats - json, yml.
 - The result is displayed in one of the styles: plain, stylish, json.
+
 ### Asciinema
 #### Finding and displaying differences in JSON files:
 [![asciicast](https://asciinema.org/a/558823.svg)](https://asciinema.org/a/558823)
 #### Finding and displaying differences in YML/YAML files:
 [![asciicast](https://asciinema.org/a/558845.svg)](https://asciinema.org/a/558845)
-
 #### Output in 'plain' format:
 [![asciicast](https://asciinema.org/a/559520.svg)](https://asciinema.org/a/559520)
 #### Output in 'stylish' format:
