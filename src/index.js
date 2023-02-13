@@ -1,7 +1,8 @@
 import { readFileSync } from 'node:fs';
 import path from 'path';
 import { parse } from './parsers.js';
-import _ from 'lodash';
+import { formatData } from './formatters/index.js';
+import { diffTree } from './diffTree.js';
 
 const makeAbsolutePath = (filepath) => path.resolve(process.cwd(), filepath);
 
@@ -13,58 +14,9 @@ const readFile = (filepath) => {
     return parse(data, ext);
 };
 
-export const genDiff = (filepath1, filepath2) => {
+export const genDiff = (filepath1, filepath2, outFormat = 'stylish') => {
     const data1 = readFile(filepath1);
     const data2 = readFile(filepath2);
-
-    const keys1 = Object.keys(data1);
-    const keys2 = Object.keys(data2);
-    const keys = _.sortBy(_.union(keys1, keys2));
-
-    return keys.map((key) => {
-        if (!Object.hasOwn(data1, key)) return { type: 'added', key, value: data2[key] };
-        if (!Object.hasOwn(data2, key)) return { type: 'deleted', key, value: data1[key] };
-        if (_.isPlainObject(data1[key]) && _.isPlainObject(data2[key])) return { type: 'nested', key, children: genDiff(data1[key], data2[key]) };
-        if (!_.isEqual(data1[key], data2[key])) {
-            return {
-            type: 'changed',
-            key,
-            value1: data1[key],
-            value2: data2[key],
-            };
-        }
-        return { type: 'unchanged', key, value: data1[key] };
-    });
+    const tree = diffTree(data1, data2);
+    return formatData(tree, outFormat);
 };
-
-
-const indent = (count) => ' '.repeat(count);
-
-const stringify = (value, depth = 1) => {
-    if (!_.isObject(value)) return String(value);
-    const keys = Object.keys(value);
-    const result = keys.map((key) => `${key}: ${stringify(value[key], depth + 1)}`);
-    return `{\n${result.join('\n')}\n}`;
-};
-
-const stringFormation = (tree, depth = 1) => tree.map((node) => {
-    if (node.type === 'nested') return `${indent(4)}${node.key}: {\n${iter(node.children, depth + 1)}}`;
-    if (node.type === 'deleted') return `${indent(2)}- ${node.key}: ${stringify(node.value, depth)}`;
-    if (node.type === 'added') return `${indent(2)}+ ${node.key}: ${stringify(node.value, depth)}`;
-    if (node.type === 'changed') {
-        const output1 = `${indent(2)}- ${node.key}: ${stringify(node.value1, depth)}`;
-        const output2 = `${indent(2)}+ ${node.key}: ${stringify(node.value2, depth)}`;
-        return `${output1}\n${output2}`;
-    }
-    if (node.type === 'unchanged') return `${indent(4)}${node.key}: ${stringify(node.value, depth)}`;
-    return new Error(`Unknown type: ${node.type}`);
-}).join('\n');
-
-export const formatStylish = (data) => `{\n${stringFormation(data)}\n}`;
-
-
-
-// console.log(genDiff('../__fixtures__/file1.json', '../__fixtures__/file2.json'));
-// console.log(stringify(genDiff('../__fixtures__/file1.json', '../__fixtures__/file2.json')));
-// console.log(makeAbsolutePath('../__fixtures__/file2.json'));
-// console.log(formatStylish(genDiff('../__fixtures__/file1.json', '../__fixtures__/file2.json')));
