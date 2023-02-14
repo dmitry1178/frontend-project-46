@@ -22,4 +22,6 @@ const iter = (tree, depth = 1) => tree.map((node) => {
     return new Error(`Unknown type: ${node.type}`);
 }).join('\n');
 
-export const formatStylish = (data) => `{\n${iter(data)}\n}`;
+const formatStylish = (data) => `{\n${iter(data)}\n}`;
+
+export default formatStylish;

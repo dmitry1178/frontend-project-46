@@ -17,4 +17,6 @@ const iter = (tree, path) => tree.flatMap((node) => {
     return new Error(`Unknown type: ${node.type}`);
 });
 
-export const formatPlain = (data) => `${iter(data, []).join('\n')}`;
+const formatPlain = (data) => `${iter(data, []).join('\n')}`;
+
+export default formatPlain;
