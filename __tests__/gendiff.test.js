@@ -16,10 +16,10 @@ const expectedPlain = readFixtureFile('expected_plain');
 const expectedJSON = readFixtureFile('expected_json');
 
 test.each(formats)('comparison display differences 2 files', (extension) => {
-    const filepath1 = buildFixturePath(`file1.${extension}`);
-    const filepath2 = buildFixturePath(`file2.${extension}`);
-    expect(genDiff(filepath1, filepath2)).toEqual(expectedStylish);
-    expect(genDiff(filepath1, filepath2, 'plain')).toEqual(expectedPlain);
-    expect(genDiff(filepath1, filepath2, 'stylish')).toEqual(expectedStylish);
-    expect(genDiff(filepath1, filepath2, 'json')).toEqual(expectedJSON);
+  const filepath1 = buildFixturePath(`file1.${extension}`);
+  const filepath2 = buildFixturePath(`file2.${extension}`);
+  expect(genDiff(filepath1, filepath2)).toEqual(expectedStylish);
+  expect(genDiff(filepath1, filepath2, 'plain')).toEqual(expectedPlain);
+  expect(genDiff(filepath1, filepath2, 'stylish')).toEqual(expectedStylish);
+  expect(genDiff(filepath1, filepath2, 'json')).toEqual(expectedJSON);
 });
