@@ -18,28 +18,28 @@ Gendiff - a program that displays the differences between two data structures.
 
 ***
 # Install and Run
+The commands below must be entered on the command line.
 ### How to Install:
-Must be typed on the command line:
 1. ```git clone git@github.com:dmitry1178/frontend-project-46.git```
 2. ```cd frontend-project-46```
 3. ```make install```
 4. ```npm link```
 ### How to run:
-- ```gendiff -f plain <filepath1> <filepath2>``` - generate difference in 'plain' format.
-- ```gendiff -f stylish <filepath1> <filepath2>``` - generate difference in 'stylish' format.
-- ```gendiff -f json <filepath1> <filepath2>``` - generate difference in 'json' format.
+- ```gendiff -f plain <filepath1> <filepath2>``` - generate differences in 'plain' format.
+- ```gendiff -f stylish <filepath1> <filepath2>``` - generate differences in 'stylish' format.
+- ```gendiff -f json <filepath1> <filepath2>``` - generate differences in 'json' format.
 - ```gendiff -h``` - display help.
 ***
 # Examples of program operation
-#### Finding and displaying differences in JSON files:
+### Finding and displaying differences in JSON files:
 [![asciicast](https://asciinema.org/a/558823.svg)](https://asciinema.org/a/558823)
-#### Finding and displaying differences in YML/YAML files:
+### Finding and displaying differences in YML/YAML files:
 [![asciicast](https://asciinema.org/a/558845.svg)](https://asciinema.org/a/558845)
-#### Output in 'plain' format:
+### Output in 'plain' format:
 [![asciicast](https://asciinema.org/a/559520.svg)](https://asciinema.org/a/559520)
-#### Output in 'stylish' format:
+### Output in 'stylish' format:
 [![asciicast](https://asciinema.org/a/559521.svg)](https://asciinema.org/a/559521)
-#### Output in 'json' format:
+### Output in 'json' format:
 [![asciicast](https://asciinema.org/a/559522.svg)](https://asciinema.org/a/559522)
 
 
