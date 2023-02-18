@@ -3,15 +3,34 @@
 [![Linter/Tests](https://github.com/dmitry1178/frontend-project-46/actions/workflows/main.yml/badge.svg)](https://github.com/dmitry1178/frontend-project-46/actions/workflows/main.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/4107b0d042f321bbe78d/maintainability)](https://codeclimate.com/github/dmitry1178/frontend-project-46/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/4107b0d042f321bbe78d/test_coverage)](https://codeclimate.com/github/dmitry1178/frontend-project-46/test_coverage)
-### Description
+***
+# Gendiff
+### Description:
 Gendiff - a program that displays the differences between two data structures.
-### System requirements
+### System requirements:
+- MacOS/Linux/Windows
 - Node.js version 18 and later
-### Program Features
+- NPM
+- Git
+### Program Features:
 - Supported input formats - json, yml.
 - The result is displayed in one of the styles: plain, stylish, json.
 
-### Asciinema
+***
+# Install and Run
+### How to Install:
+Must be typed on the command line:
+1. ```git clone git@github.com:dmitry1178/frontend-project-46.git```
+2. ```cd frontend-project-46```
+3. ```make install```
+4. ```npm link```
+### How to run:
+- Generate difference in 'plain' format - ```gendiff -f plain <filepath1> <filepath2>```
+- Generate difference in 'stylish' format - ```gendiff -f stylish <filepath1> <filepath2>```
+- Generate difference in 'json' format - ```gendiff -f json <filepath1> <filepath2>```
+- Display help - ```gendiff -h```
+***
+# Examples of program operation
 #### Finding and displaying differences in JSON files:
 [![asciicast](https://asciinema.org/a/558823.svg)](https://asciinema.org/a/558823)
 #### Finding and displaying differences in YML/YAML files:
