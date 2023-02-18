@@ -25,10 +25,10 @@ Must be typed on the command line:
 3. ```make install```
 4. ```npm link```
 ### How to run:
-- Generate difference in 'plain' format - ```gendiff -f plain <filepath1> <filepath2>```
-- Generate difference in 'stylish' format - ```gendiff -f stylish <filepath1> <filepath2>```
-- Generate difference in 'json' format - ```gendiff -f json <filepath1> <filepath2>```
-- Display help - ```gendiff -h```
+- ```gendiff -f plain <filepath1> <filepath2>``` - generate difference in 'plain' format.
+- ```gendiff -f stylish <filepath1> <filepath2>``` - generate difference in 'stylish' format.
+- ```gendiff -f json <filepath1> <filepath2>``` - generate difference in 'json' format.
+- ```gendiff -h``` - display help.
 ***
 # Examples of program operation
 #### Finding and displaying differences in JSON files:
